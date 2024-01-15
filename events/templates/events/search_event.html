@@ -1,0 +1,67 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+  <center>
+    {% if searched %}
+
+    <h1> You Search For.... {{ searched }}</h1>
+    <br/>
+    {% for event in event_s %}
+            
+    <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-body">
+                      <table class="table table-striped">
+                          <thead>
+                              <tr>
+                                  <th scope="col">SER.no</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">MObile_No</th>
+                                  <th scope="col">Email</th>
+                                  <th scope="col">Booking Date</th>
+                                  <th scope="col">Ticket.no</th>
+                                  <th scope="col">UUID</th>
+                                  <th scope="col">Date</th>
+                              </tr>
+                          </thead>
+                          <tbody> 
+                              
+                                  <tr>
+                                      <td>{{forloop.counter }}</td>
+                                      <td>{{ event.name }}</td>
+                                      <td>{{ event.mobile_no }}</td>
+                                      <td>{{ event.email_address }}</td>
+                                      <td>{{ event.event_date }}</td>
+                                      <td>{{ event.venue }}</td>
+                                      <td>{{ event.token_id }}</td>
+                                      <td>{{ event.created_date }}</td>
+                                      <td>
+                                          <a href="{% url 'delete_event' event.id %}" class="btn btn-danger md-sm">Delete</a><br/><br/>
+                                          <a href="{% url 'update_event' event.id %}" class="btn btn-success md-sm">Update</a>
+                                      </td>                                   
+  
+                                  </tr>
+                              
+  
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    
+    <br/>
+    {% endfor %}
+
+    {% else %}
+
+        <h1>Hey! You Forgot To searched For A Event...</h1>
+
+    {% endif %}
+
+
+</center>
+{% endblock %}

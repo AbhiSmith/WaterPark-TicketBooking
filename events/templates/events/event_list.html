@@ -1,0 +1,77 @@
+{% extends 'events/base.html' %}
+
+
+{% block content %}
+  
+
+<h1> Booking List</h1>
+
+  <!-- ================= -->
+
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">SER.no</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">MObile_No</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Booking Date</th>
+                                <th scope="col">Ticket.no</th>
+                                <th scope="col">UUID</th>
+                                <th scope="col">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            {% for event in event_list %}
+                                <tr>
+                                    <td>{{forloop.counter }}</td>
+                                    <td>{{ event.name }}</td>
+                                    <td>{{ event.mobile_no }}</td>
+                                    <td>{{ event.email_address }}</td>
+                                    <td>{{ event.event_date }}</td>
+                                    <td>{{ event.venue }}</td>
+                                    <td>{{ event.token_id }}</td>
+                                    <td>{{ event.created_date }}</td>
+                                    <td>
+                                        <a href="{% url 'delete_event' event.id %}" class="btn btn-danger md-sm">Delete</a><br/><br/>
+                                        <a href="{% url 'update_event' event.id %}" class="btn btn-success md-sm">Update</a>
+                                    </td>                                   
+
+                                </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+<!-- 
+<ul>
+{% for event in event_list %}
+
+   
+    <li> {{ event.name }} </li>    
+    <li> {{ event.mobile_no }} </li> 
+   
+   <li> {{ event.email_address }} </li>
+   <li> {{ event.event_date }} </li>
+   <li> {{ event.venue }} </li>
+   <li> {{ event.token_id }} </li>
+   <br/><br/>
+{% endfor %}
+
+</ul> -->
+
+
+
+<!-- {{ event_list }} -->
+
+{% endblock %}
